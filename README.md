@@ -1,15 +1,16 @@
 # Modal FastAPI Starter Template
 
-A production-ready template for building scalable FastAPI applications using Modal's serverless infrastructure.
+A production-ready template for building scalable FastAPI applications using Modal's serverless infrastructure. This template provides a clean, secure, and efficient foundation for deploying ML-powered APIs.
 
 ## 🚀 Features
 
 - FastAPI integration with Modal's serverless platform
-- Built-in authentication middleware
+- Built-in authentication middleware with token-based security
 - CORS support
 - Modular project structure
-- Environment variable management
-- Example endpoint implementation
+- Environment variable management through Modal secrets
+- Example class integration
+- Protected and public endpoints
 
 ## 📋 Prerequisites
 
@@ -39,11 +40,7 @@ source venv/bin/activate
 
 3. Install dependencies:
 ```bash
-# Install from requirements.txt
 pip install -r requirements.txt
-
-# Or install individual packages
-pip install modal fastapi[standard]
 ```
 
 4. Set up Modal:
@@ -61,46 +58,46 @@ modal secret create auth-token AUTH_TOKEN=your-secret-token
 ```
 modal-fastapi-starter/
 ├── src/
-│   ├── index.py      # Main application file
-│   └── classA.py     # Example class implementation
-└── utils/            # Utility functions
+│   ├── app.py        # Main FastAPI application
+│   ├── config.py     # Configuration and Modal setup
+│   └── model.py      # ML model implementation
+├── utils/            # Utility functions
+├── requirements.txt  # Project dependencies
+└── README.md        # Project documentation
 ```
 
 ## 🚀 Usage
 
 1. Serving local endpoint (for testing):
 ```bash
-modal serve -m src.api
+modal serve -m src.app
 ```
 
 2. Deploy to Modal:
 ```bash
-modal deploy -m src.api
+modal deploy -m src.app
 ```
 
 ## 🔒 Authentication
 
-The template includes a simple token-based authentication system. To access protected endpoints:
+The template includes a token-based authentication system. To access protected endpoints:
 
 1. Include the token in your requests:
 ```bash
 curl -H "Authorization: Bearer your-secret-token" https://your-modal-url/endpoint
 ```
 
-## 📝 Example Endpoint
+## 📝 Available Endpoints
 
-The template includes a protected endpoint at `/endpoint` that demonstrates:
-- Bearer authentication
-- JSON response
-
-To-do:
-- OOP/Class integration
+- `GET /`: Public endpoint that returns a welcome message and model prediction
+- `POST /endpoint`: Protected endpoint that requires authentication
 
 ## 🔧 Configuration
 
 - Environment variables are managed through Modal secrets
 - CORS is configured to allow all origins (customize as needed)
 - Authentication token is managed through Modal secrets
+- ML model configuration can be customized in `src/model.py`
 
 ## 🤝 Contributing
 
